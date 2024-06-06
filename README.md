@@ -4,20 +4,21 @@ Discord bot that is cat themed, featuring games, music, messaging, and unique ec
 ## Description
 🐈 Car Bot is a multi-purpose cat-themed discord bot template including:
 
+
 As of 6/5/2024:
-Games:
+### Games:
 - Catsweeper (Minesweeper but cat themed)
 
-Messaging:
+### Messaging:
 - A "meow language" encoder/decoder
 
-Music:
+### Music:
 - Plays music via YouTube
 - Allows for pausing/resuming music
 - Queues for multiple songs (includes skipping and removing from Queue)
 - Playlist creation
 
-Economy:
+### Economy:
 - Database support
 - Stock market simulation (Work in progress)
 - Working inventory and shop system for users
