@@ -1,0 +1,9 @@
+{
+    "stocks": [
+        {"symbol": "FAKE1", "name": "Test", "price": 100.0},
+        {"symbol": "FAKE2", "name": "Test2", "price": 150.0},
+        {"symbol": "FAKE3", "name": "Test3", "price": 200.0},
+        {"symbol": "FAKE4", "name": "Test4", "price": 250.0},
+        {"symbol": "FAKE5", "name": "Test5", "price": 300.0}
+    ]
+}

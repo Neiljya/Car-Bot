@@ -1,0 +1,28 @@
+{
+    "items": [
+        {
+            "name": "Prestige I",
+            "price": 1000,
+            "type": "role",
+            "role_id": 1122716748861411408
+        },
+        {
+            "name": "Laptop",
+            "price": 500,
+            "type": "product",
+            "description": "A high-performance laptop"
+        },
+        {
+            "name": "Smartphone",
+            "price": 300,
+            "type": "product",
+            "description": "A latest model smartphone"
+        },
+        {
+            "name": "Tablet",
+            "price": 250,
+            "type": "product",
+            "description": "A portable tablet device"
+        }
+    ]
+}
