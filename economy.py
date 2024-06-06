@@ -12,6 +12,7 @@ class StockMarket:
         self.min_investment = min_investment
         self.update_stocks.start()
 
+    # Updates the stocks every 15 minutes to simulate market volatility
     @tasks.loop(minutes=15)
     async def update_stocks(self):
         all_stocks = self.economy_cog.get_all_stock_symbols()
@@ -35,6 +36,7 @@ class StockMarket:
         self.economy_cog.add_to_stock_portfolio(user_id, symbol, shares)
         return f"You have invested ${amount} in {symbol}. You now own {shares:.2f} shares."
 
+    # Add all values of stocks in portfolio
     def get_portfolio_value(self, user_id):
         portfolio = self.economy_cog.get_stock_portfolio(user_id)
         total_value = 0
@@ -118,10 +120,14 @@ class Economy_Cog(commands.Cog):
     @commands.command()
     async def daily(self, ctx):
         user_data = self.get_user_data(ctx.author.id) # Ensures the data exists
-        last_daily = user_data.get("last_daily")
+        last_daily = user_data.get("last_daily") 
 
+        # If there is a logged date
         if last_daily:
+            # Check the time difference
             elapsed_time = datetime.utcnow() - last_daily
+
+            # If its less than 24 hours then deny the command
             if elapsed_time < timedelta(hours=24):
                 await ctx.send(f"{ctx.author.mention}, you've already claimed your daily reward.")
                 return
@@ -333,13 +339,13 @@ class Economy_Cog(commands.Cog):
 
     @commands.command()
     async def portfolio(self, ctx):
-        """Check your stock portfolio"""
+        # Check the stock portfolio
         portfolio_value = self.stock_market.get_portfolio_value(ctx.author.id)
         await ctx.send(f"{ctx.author.mention}, your portfolio is currently valued at ${portfolio_value:.2f}.")
 
     @commands.command()
     async def stock_performance(self, ctx):
-        """Display the performance of the fake stocks"""
+        # Display stocks and their performances
         stocks = self.stocks.find()
         embed = discord.Embed(title="Stock Performance")
         for stock in stocks:
@@ -351,7 +357,6 @@ class Economy_Cog(commands.Cog):
 
     @commands.command()
     async def sell_shares(self, ctx, symbol: str, shares: float):
-        """Sell shares of a stock"""
         user_data = self.get_user_data(ctx.author.id)
         portfolio = user_data.get("portfolio", {})
         if portfolio.get(symbol, 0) < shares:
